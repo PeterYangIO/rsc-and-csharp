@@ -22,7 +22,7 @@ export default function RegExDos({ children }: { children: React.ReactNode }) {
         <>
             <h1>RegEx DoS</h1>
             <details className="dropdown details-reset details-overlay d-inline-block">
-                <summary className="btn" aria-haspopup="true">
+                <summary className="btn btn-primary" aria-haspopup="true">
                     Pick your poison
                     <div className="dropdown-caret" />
                 </summary>
