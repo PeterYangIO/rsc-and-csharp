@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { formatNumber } from "../../util";
-import ClickMe from "./ClickMe";
-import { TimelineBody, TimelineBodyLoading } from "./TimelineBody";
+import ClickMe from "../../components/suspense/ClickMe";
+import { TimelineBodyLoading, TimelineBody } from "../../components/suspense/TimelineBody";
 
 export type LoadingDuration = {
     index: number;

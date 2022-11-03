@@ -1,7 +1,5 @@
+import Post from "../components/home/Post";
+
 export default function Page() {
-    return (
-        <main>
-            <button className="btn">Hello world</button>
-        </main>
-    );
+    return <Post username="peteryangio" text="This is the content" code="alert('hello world')" />;
 }

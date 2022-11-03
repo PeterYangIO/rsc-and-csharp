@@ -53,7 +53,7 @@ export default function Nav() {
             {links.map(link => (
                 <Link
                     key={link.href}
-                    className="SideNav-item"
+                    className="SideNav-item color-bg-default"
                     href={link.href}
                     aria-current={isActiveLink(pathname, link.href) ? "page" : undefined}
                 >

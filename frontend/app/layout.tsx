@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <link href="https://unpkg.com/@primer/css@20.5.1/dist/primer.css" rel="stylesheet" />
             </head>
-            <body>
+            <body className="color-bg-inset">
                 <header className="Header">
                     <div className="Header-item">
                         <a href="#" className="Header-link f4 d-flex flex-items-center">
