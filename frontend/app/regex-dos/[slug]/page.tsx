@@ -1,3 +1,5 @@
+import { formatNumber } from "../../../util";
+
 function denialOfService(slug: string) {
     const start = performance.now();
     const re = new RegExp(
@@ -8,14 +10,6 @@ function denialOfService(slug: string) {
     const end = performance.now();
 
     return end - start;
-}
-
-function formatNumber(number: number) {
-    if (number < 1000) {
-        return `${number.toFixed(2)} milliseconds`;
-    } else {
-        return `${(number / 1000).toFixed(2)} seconds`;
-    }
 }
 
 export default function RegExDosExecute({ params }: { params: { slug: string } }) {

@@ -28,7 +28,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </div>
                 </header>
                 <div className="Layout container-xl mt-5">
-                    <Nav />
+                    <div className="Layout-sidebar">
+                        <Nav />
+                    </div>
                     <main className="Layout-main">{children}</main>
                 </div>
             </body>

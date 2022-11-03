@@ -5,11 +5,11 @@ const options = [
     },
     {
         display: "Long email",
-        value: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com"
+        value: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com"
     },
     {
         display: "No domain",
-        value: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        value: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     },
     {
         display: "Crash me",

@@ -1,6 +1,6 @@
 "use client";
 
-import { BellIcon, HomeIcon, MailIcon, PersonIcon, ShieldXIcon } from "@primer/octicons-react";
+import { BellIcon, HomeIcon, HourglassIcon, MailIcon, PersonIcon, ShieldXIcon } from "@primer/octicons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,6 +9,16 @@ const links = [
         text: "Home",
         icon: <HomeIcon />,
         href: "/"
+    },
+    {
+        text: "Suspense",
+        icon: <HourglassIcon />,
+        href: "/suspense"
+    },
+    {
+        text: "RegEx DoS",
+        icon: <ShieldXIcon />,
+        href: "/regex-dos"
     },
     {
         text: "Notifications",
@@ -24,11 +34,6 @@ const links = [
         text: "Profile",
         icon: <PersonIcon />,
         href: "/profile"
-    },
-    {
-        text: "RegEx DoS",
-        icon: <ShieldXIcon />,
-        href: "/regex-dos"
     }
 ];
 
@@ -44,15 +49,15 @@ export default function Nav() {
     const pathname = usePathname();
 
     return (
-        <nav className="Layout-sidebar SideNav border">
+        <nav className="SideNav border">
             {links.map(link => (
                 <Link
                     key={link.href}
-                    className="SideNav-item menu-item"
+                    className="SideNav-item"
                     href={link.href}
                     aria-current={isActiveLink(pathname, link.href) ? "page" : undefined}
                 >
-                    {link.icon}
+                    <span className="mr-2">{link.icon}</span>
                     {link.text}
                 </Link>
             ))}
