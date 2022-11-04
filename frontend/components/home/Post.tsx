@@ -31,7 +31,7 @@ export default async function Post(props: PostProps) {
         <div className="Box color-shadow-medium p-3 mb-5">
             <div className="d-flex">
                 <div className="m-2">
-                    <img className="circle" src={`https://github.com/${username}.png?size=48`} />
+                    <img className="circle" src={`https://github.com/${username}.png?size=48`} height="48" width="48" />
                 </div>
                 <div className="d-flex flex-column width-full">
                     <div>
