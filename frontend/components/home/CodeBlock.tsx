@@ -1,0 +1,31 @@
+import Prism from "prismjs";
+import sanitizeHtml from "sanitize-html";
+import { CodeExecution, CodeExecutionLoading } from "./CodeExecution";
+import { Suspense } from "react";
+import "prismjs/components/prism-python";
+import "prismjs/themes/prism-okaidia.min.css";
+
+export type CodeBlockProps = {
+    code: string;
+    language: string;
+};
+
+export default function CodeBlock(props: CodeBlockProps) {
+    const { code, language } = props;
+    const html = sanitizeHtml(Prism.highlight(code, Prism.languages[language], language), {
+        allowedAttributes: {
+            span: ["class"]
+        }
+    });
+
+    return (
+        <>
+            <pre className={`language-${language}`}>
+                <code dangerouslySetInnerHTML={{ __html: html }} />
+            </pre>
+            <Suspense fallback={<CodeExecutionLoading />}>
+                <CodeExecution {...props} />
+            </Suspense>
+        </>
+    );
+}

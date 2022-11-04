@@ -6,22 +6,26 @@ export default function Page() {
             <Post
                 username="peteryangio"
                 text="This is the content"
-                code={'function helloWorld() {\n\tconsole.log("Hello world")\n}'}
+                code={{
+                    content: 'function helloWorld() {\n\tconsole.log("Hello world")\n}\nhelloWorld();',
+                    language: "javascript"
+                }}
             />
             <Post
                 username="peteryangio"
                 text="This is the content"
-                code={'function helloWorld() {\n\tconsole.log("Hello world")\n}'}
+                code={{
+                    content: '<script>alert("Hello world")</script>',
+                    language: "html"
+                }}
             />
             <Post
                 username="peteryangio"
                 text="This is the content"
-                code={'function helloWorld() {\n\tconsole.log("Hello world")\n}'}
-            />
-            <Post
-                username="peteryangio"
-                text="This is the content"
-                code={'function helloWorld() {\n\tconsole.log("Hello world")\n}'}
+                code={{
+                    content: 'print("Hello world")',
+                    language: "python"
+                }}
             />
         </div>
     );

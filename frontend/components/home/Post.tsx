@@ -1,10 +1,14 @@
 import { cache } from "react";
+import CodeBlock from "./CodeBlock";
 import PostActions from "./PostActions";
 
 type PostProps = {
     username: string;
     text: string;
-    code: string;
+    code: {
+        language: string;
+        content: string;
+    };
 };
 
 type User = {
@@ -21,7 +25,7 @@ const getUser = cache(async (username: string): Promise<User> => {
 
 export default async function Post(props: PostProps) {
     const { username, text, code } = props;
-    const { login, avatar_url, name } = await getUser(username);
+    const { login, name } = await getUser(username);
 
     return (
         <div className="Box color-shadow-medium p-3 mb-5">
@@ -35,13 +39,7 @@ export default async function Post(props: PostProps) {
                         <span className="color-fg-muted">@{login ?? username}</span>
                     </div>
                     <div>{text}</div>
-                    <code
-                        style={{
-                            whiteSpace: "pre-wrap"
-                        }}
-                    >
-                        {code}
-                    </code>
+                    <CodeBlock code={code.content} language={code.language} />
                 </div>
             </div>
             <PostActions

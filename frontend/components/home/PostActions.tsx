@@ -55,6 +55,9 @@ export default function PostActions(props: PostActionsProps) {
                                 setReactionCounts={setReactionCounts}
                             />
                         ))}
+                    {Object.values(currentCounts).reduce((a, b) => a + b, 0) === 0 && (
+                        <span>Be the first to react!</span>
+                    )}
                 </div>
                 <div>
                     <span className="text-small text-normal color-fg-muted">
