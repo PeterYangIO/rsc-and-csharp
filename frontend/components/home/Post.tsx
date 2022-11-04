@@ -18,7 +18,11 @@ type User = {
 };
 
 const getUser = cache(async (username: string): Promise<User> => {
-    const response = await fetch(`https://api.github.com/users/${username}`);
+    const response = await fetch(`https://api.github.com/users/${username}`, {
+        headers: {
+            Authorization: `token ${process.env.GITHUB_TOKEN}`
+        }
+    });
 
     return await response.json();
 });

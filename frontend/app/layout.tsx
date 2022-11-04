@@ -1,3 +1,5 @@
+import { CodeReviewIcon } from "@primer/octicons-react";
+import HeaderAvatar from "../components/home/HeaderAvatar";
 import Nav from "./Nav";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -8,23 +10,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </head>
             <body className="color-bg-inset">
                 <header className="Header">
-                    <div className="Header-item">
+                    <div className="Header-item Header-item--full">
                         <a href="#" className="Header-link f4 d-flex flex-items-center">
-                            <span>Title</span>
+                            <CodeReviewIcon className="mr-2" size={24} />
+                            <span>BirdyCode</span>
                         </a>
                     </div>
                     <div className="Header-item">
-                        <input type="search" className="form-control Header-Input" />
+                        <a href="#" className="Header-link">
+                            Slide deck
+                        </a>
                     </div>
-                    <div className="Header-item Header-item--full">Menu</div>
+                    <div className="Header-item">
+                        <a href="https://github.com/peteryangio/rsc-and-csharp" className="Header-link">
+                            Repository
+                        </a>
+                    </div>
                     <div className="Header-item mr-0">
-                        <img
-                            className="avatar"
-                            height="20"
-                            alt="@octocat"
-                            src="https://github.com/peteryangio.png"
-                            width="20"
-                        />
+                        <HeaderAvatar />
                     </div>
                 </header>
                 <div className="Layout container-lg mt-5">
