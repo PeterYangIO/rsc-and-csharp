@@ -10,13 +10,17 @@
 		"vscode": {		
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"ms-dotnettools.csharp"
+				"ms-dotnettools.csharp",
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "wix.vscode-import-cost",
+                "ms-vsliveshare.vsliveshare"
 			]
 		}
 	},
 
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [5000, 5001],
+    "forwardPorts": [3000, 5000],
 
 	// [Optional] To reuse of your local HTTPS dev cert:
 	//
