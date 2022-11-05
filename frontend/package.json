@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "swagger-gen": "dotnet build ../backend/backend.csproj && sta -p ../backend/bin/Debug/net6.0/swagger.json"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
@@ -24,6 +25,7 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@types/sanitize-html": "^2.6.2",
+    "swagger-typescript-api": "^11.1.2",
     "typescript": "^4.8.4"
   }
 }
