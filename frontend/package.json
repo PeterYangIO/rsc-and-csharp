@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "swagger-gen": "dotnet build ../backend/backend.csproj && sta -p ../backend/bin/Debug/net6.0/swagger.json"
+    "swagger-gen": "dotnet build ../backend/backend.csproj && sta -p ../backend/bin/Debug/net6.0/swagger.json -o api-client -n _api.ts --unwrap-response-data"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",

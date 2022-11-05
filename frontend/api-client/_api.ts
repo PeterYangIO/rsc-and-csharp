@@ -24,6 +24,10 @@ export interface PostRequest {
   code?: string;
 }
 
+export interface TokenDto {
+  token?: string;
+}
+
 export interface UserDto {
   username?: string;
   password?: string;
@@ -187,7 +191,7 @@ export class HttpClient<SecurityDataType = unknown> {
     baseUrl,
     cancelToken,
     ...params
-  }: FullRequestParams): Promise<HttpResponse<T, E>> => {
+  }: FullRequestParams): Promise<T> => {
     const secureParams =
       ((typeof secure === "boolean" ? secure : this.baseApiParams.secure) &&
         this.securityWorker &&
@@ -232,13 +236,13 @@ export class HttpClient<SecurityDataType = unknown> {
       }
 
       if (!response.ok) throw data;
-      return data;
+      return data.data;
     });
   };
 }
 
 /**
- * @title PostsApi
+ * @title Api
  * @version v1
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
@@ -252,12 +256,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     loginCreate: (data: UserDto, params: RequestParams = {}) =>
-      this.request<void, any>({
+      this.request<TokenDto, any>({
         path: `/login`,
         method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
+        format: "json",
         ...params,
       }),
   };
@@ -288,12 +293,13 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @secure
      */
     postsCreate: (data: PostRequest, params: RequestParams = {}) =>
-      this.request<void, any>({
+      this.request<Post, any>({
         path: `/posts`,
         method: "POST",
         body: data,
         secure: true,
         type: ContentType.Json,
+        format: "json",
         ...params,
       }),
   };

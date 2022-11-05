@@ -73,7 +73,9 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapPost("/login", [AllowAnonymous] (UserDto user) =>
+app.MapPost(
+    "/login",
+    [AllowAnonymous][Produces(typeof(TokenDto))] (UserDto user) =>
 {
     // Not a real authentication method. Simply give a token to anyone who asks.
     if (user.username != user.password)
@@ -99,13 +101,15 @@ app.MapPost("/login", [AllowAnonymous] (UserDto user) =>
     var token = jwtTokenHandler.CreateToken(tokenDescriptor);
     var jwtToken = jwtTokenHandler.WriteToken(token);
 
-    return Results.Ok(jwtToken);
+    return Results.Ok(new TokenDto(jwtToken));
 });
 
 app.MapGet("/posts", async (PostDb db) =>
     await db.Posts.OrderByDescending(p => p.Id).ToListAsync());
 
-app.MapPost("/posts", [Authorize] (ClaimsPrincipal user, PostDb db, [FromBody] PostRequest post) =>
+app.MapPost(
+    "/posts",
+    [Authorize][Produces(typeof(Post))] (ClaimsPrincipal user, PostDb db, [FromBody] PostRequest post) =>
 {
     var name = user?.Identity?.Name?.ToLowerInvariant();
     if (string.IsNullOrEmpty(name))

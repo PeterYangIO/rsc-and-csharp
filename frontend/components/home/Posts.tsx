@@ -1,12 +1,10 @@
-import { Api } from "../../Api";
+import APIClient from "../../api-client/APIClient";
 import Post from "./Post";
 
 export default async function Posts() {
-    const api = new Api({
-        baseUrl: "http://localhost:5019"
-    });
-    const posts = await api.posts.postsList();
+    // const posts = await APIClient.getInstance().posts.postsList();
 
+    return (<div>hi</div>);
     return (
         <>
             {posts.data.map(post => {
