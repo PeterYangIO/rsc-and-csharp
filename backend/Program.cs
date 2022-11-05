@@ -11,7 +11,7 @@ using Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<PostDb>(o => o.UseInMemoryDatabase("PostList"));
+builder.Services.AddDbContext<PostDb>(o => o.UseNpgsql(builder.Configuration["ConnectionStrings:Database"]));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(o =>
