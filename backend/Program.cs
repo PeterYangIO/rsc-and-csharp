@@ -16,7 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(o =>
 {
-    o.SwaggerDoc("v1", new() { Title = "TodoApi", Version = "v1" });
+    o.SwaggerDoc("v1", new() { Title = "Api", Version = "v1" });
     o.SupportNonNullableReferenceTypes();
     o.UseInlineDefinitionsForEnums();
     o.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -102,7 +102,7 @@ app.MapPost("/login", [AllowAnonymous] (UserDto user) =>
     return Results.Ok(jwtToken);
 });
 
-app.MapGet("/posts", [Authorize] async (PostDb db) =>
+app.MapGet("/posts", async (PostDb db) =>
     await db.Posts.OrderByDescending(p => p.Id).ToListAsync());
 
 app.MapPost("/posts", [Authorize] (ClaimsPrincipal user, PostDb db, [FromBody] PostRequest post) =>

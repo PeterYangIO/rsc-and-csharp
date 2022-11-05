@@ -4,7 +4,7 @@ import PostActions from "./PostActions";
 
 type PostProps = {
     username: string;
-    text: string;
+    description: string;
     code: {
         language: string;
         content: string;
@@ -28,7 +28,7 @@ const getUser = cache(async (username: string): Promise<User> => {
 });
 
 export default async function Post(props: PostProps) {
-    const { username, text, code } = props;
+    const { username, description, code } = props;
     const { login, avatar_url, name } = await getUser(username);
 
     return (
@@ -42,7 +42,7 @@ export default async function Post(props: PostProps) {
                         <span className="text-semibold">{name}</span>{" "}
                         <span className="color-fg-muted">@{login ?? username}</span>
                     </div>
-                    <div>{text}</div>
+                    <div>{description}</div>
                     <CodeBlock code={code.content} language={code.language} />
                 </div>
             </div>
