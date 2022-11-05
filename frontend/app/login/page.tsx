@@ -15,10 +15,6 @@ export default function Login() {
             username,
             password: username
         });
-
-        if (response.ok) {
-            router.push("/");
-        }
     };
 
     return (

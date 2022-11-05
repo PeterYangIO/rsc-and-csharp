@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export default function HeaderAvatar() {
     const nextCookies = cookies();
-    if (!nextCookies.get("jwt")) {
+    const token = nextCookies.get("auth-token")?.value;
+    if (!token) {
         return (
             <Link href="/login" className="Header-link">
                 Log in
@@ -11,6 +12,11 @@ export default function HeaderAvatar() {
         );
     }
 
-    // TODO Parse JWT from http cookie for user info
-    return <img className="avatar" height="20" alt="@peteryangio" src="https://github.com/peteryangio.png" />;
+    const user: {
+        name: string;
+    } = JSON.parse(Buffer.from(token.split(".")[1], "base64").toString());
+
+    return (
+        <img className="avatar" height="20" alt={`@${user.name}`} src={`https://github.com/${user.name}.png?size=20`} />
+    );
 }

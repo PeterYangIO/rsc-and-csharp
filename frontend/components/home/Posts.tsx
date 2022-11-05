@@ -1,10 +1,14 @@
+import { cookies } from "next/headers";
 import APIClient from "../../api-client/APIClient";
 import Post from "./Post";
 
 export default async function Posts() {
-    // const posts = await APIClient.getInstance().posts.postsList();
+    const nextCookies = cookies();
+    const posts = await APIClient.getInstance(nextCookies.get("auth-token")?.value).posts.postsList();
 
-    return (<div>hi</div>);
+    if (posts.data.length === 0) {
+        return <div>No posts</div>;
+    }
     return (
         <>
             {posts.data.map(post => {

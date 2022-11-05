@@ -1,14 +1,25 @@
-import { Api } from "./_api";
+import { Api, ApiConfig } from "./_api";
 
 export default class APIClient {
-    private static instance: Api<null>;
-
-    public static getInstance(): Api<null> {
-        if (!APIClient.instance) {
-            APIClient.instance = new Api({
-                baseUrl: "http://localhost:3000/api"
-            });
+    public static getInstance(token?: string) {
+        let customFetch: typeof fetch | null = null;
+        if (token) {
+            customFetch = (input, init) => {
+                const i = { ...init };
+                i.headers = {
+                    ...init?.headers,
+                    Authorization: `Bearer ${token}`
+                };
+                return fetch(input, i);
+            };
         }
-        return APIClient.instance;
+
+        const apiConfig: ApiConfig<null> = {
+            baseUrl: "http://localhost:3000/api"
+        };
+        if (customFetch) {
+            apiConfig.customFetch = customFetch;
+        }
+        return new Api(apiConfig);
     }
 }
