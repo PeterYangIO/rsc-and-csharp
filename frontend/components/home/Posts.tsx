@@ -1,13 +1,11 @@
-import { cookies } from "next/headers";
 import APIClient from "../../api-client/APIClient";
 import { HttpResponse, Post } from "../../api-client/_api";
 import PostComponent from "./Post";
 
 export default async function Posts() {
-    const nextCookies = cookies();
     let posts: HttpResponse<Post[], any>;
     try {
-        posts = await APIClient.getInstance(nextCookies.get("auth-token")?.value).posts.postsList();
+        posts = await APIClient.instance.posts.postsList();
     } catch {
         return <div>Login to see posts</div>
     }
