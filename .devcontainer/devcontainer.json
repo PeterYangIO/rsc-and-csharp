@@ -20,5 +20,5 @@
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:1": {}
 	},
-	"postCreateCommand": "./.devcontainer/postcreate.sh"
+	"postCreateCommand": "chmod +x ./.devcontainer/postcreate.sh && ./.devcontainer/postcreate.sh"
 }
