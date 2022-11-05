@@ -9,19 +9,20 @@ export type LoadingDuration = {
 };
 
 function makePromises(n: number) {
-    return [...Array(n)].map((_, index) => {
-        return new Promise<LoadingDuration>((resolve, reject) => {
-            const resolveDuration = Math.random() * 10000;
-            const shouldReject = Math.random() > 0.7;
-            setTimeout(() => {
-                if (shouldReject) {
-                    reject(new Error(`Promise ${index} failed to resolve after ${formatNumber(resolveDuration)}`));
-                } else {
-                    resolve({ index, resolveDuration });
-                }
-            }, resolveDuration);
-        });
-    });
+    return [...Array(n)].map(
+        (_, index) =>
+            new Promise<LoadingDuration>((resolve, reject) => {
+                const resolveDuration = Math.random() * 10000;
+                const shouldReject = Math.random() > 0.7;
+                setTimeout(() => {
+                    if (shouldReject) {
+                        reject(new Error(`Promise ${index} failed to resolve after ${formatNumber(resolveDuration)}`));
+                    } else {
+                        resolve({ index, resolveDuration });
+                    }
+                }, resolveDuration);
+            })
+    );
 }
 
 export default function AwaitSuspense() {

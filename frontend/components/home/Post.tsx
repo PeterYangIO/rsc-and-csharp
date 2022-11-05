@@ -29,13 +29,13 @@ const getUser = cache(async (username: string): Promise<User> => {
 
 export default async function Post(props: PostProps) {
     const { username, text, code } = props;
-    const { login, name } = await getUser(username);
+    const { login, avatar_url, name } = await getUser(username);
 
     return (
         <div className="Box color-shadow-medium p-3 mb-5">
             <div className="d-flex">
                 <div className="mr-2">
-                    <img className="circle" src={`https://github.com/${username}.png?size=48`} height="48" width="48" />
+                    <img className="circle" src={`${avatar_url}?size=48`} height="48" width="48" />
                 </div>
                 <div className="d-flex flex-column width-full">
                     <div>
