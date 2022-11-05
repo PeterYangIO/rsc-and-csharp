@@ -19,5 +19,6 @@
 	"remoteUser": "vscode",
 	"features": {
 		"ghcr.io/devcontainers/features/docker-in-docker:1": {}
-	}
+	},
+	"postCreateCommand": "cd backend && dotnet restore && dotnet tool restore && dotnet ef database update"
 }
