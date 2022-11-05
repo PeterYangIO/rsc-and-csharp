@@ -1,10 +1,16 @@
 import { cookies } from "next/headers";
 import APIClient from "../../api-client/APIClient";
-import Post from "./Post";
+import { HttpResponse, Post } from "../../api-client/_api";
+import PostComponent from "./Post";
 
 export default async function Posts() {
     const nextCookies = cookies();
-    const posts = await APIClient.getInstance(nextCookies.get("auth-token")?.value).posts.postsList();
+    let posts: HttpResponse<Post[], any>;
+    try {
+        posts = await APIClient.getInstance(nextCookies.get("auth-token")?.value).posts.postsList();
+    } catch {
+        return <div>Login to see posts</div>
+    }
 
     if (posts.data.length === 0) {
         return <div>No posts</div>;
@@ -13,7 +19,8 @@ export default async function Posts() {
         <>
             {posts.data.map(post => {
                 return (
-                    <Post
+                    <PostComponent
+                        key={post.id}
                         username={post.username!}
                         description={post.description!}
                         code={{

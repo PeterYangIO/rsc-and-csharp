@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import APIClient from "../../api-client/APIClient";
 
@@ -15,6 +15,10 @@ export default function Login() {
             username,
             password: username
         });
+
+        if (response.ok) {
+            router.push("/");
+        }
     };
 
     return (

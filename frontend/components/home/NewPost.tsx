@@ -4,9 +4,11 @@ import { FormEvent, useRef, useState } from "react";
 import { Box, Button, Dialog, FormControl, Select, Textarea, ThemeProvider } from "@primer/react";
 import Editor from "@monaco-editor/react";
 import APIClient from "../../api-client/APIClient";
+import { useRouter } from "next/navigation";
 
 export default function NewPost() {
     const returnFocusRef = useRef(null);
+    const router = useRouter();
 
     const [isOpen, setIsOpen] = useState(false);
     const [description, setDescription] = useState("");
@@ -24,6 +26,7 @@ export default function NewPost() {
 
         if (res.ok) {
             setIsOpen(false);
+            router.refresh();
         }
     };
 
