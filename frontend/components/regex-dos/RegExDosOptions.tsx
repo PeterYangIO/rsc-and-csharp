@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const options = [
     {
@@ -26,9 +26,10 @@ export default function RegExDosOptions() {
     const router = useRouter();
     const [value, setValue] = useState("");
 
-    useEffect(() => {
+    const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        setValue(e.target.value);
         router.push(`/regex-dos/${value}`);
-    }, [value]);
+    };
 
     return (
         <div className="form-group">
@@ -36,7 +37,7 @@ export default function RegExDosOptions() {
                 <label htmlFor="regex-value">Example Select</label>
             </div>
             <div className="form-group-body">
-                <select className="form-select" id="regex-value" value={value} onChange={e => setValue(e.target.value)}>
+                <select className="form-select" id="regex-value" value={value} onChange={onChange}>
                     <option disabled value=""></option>
                     {options.map(option => (
                         <option key={option.value} value={option.value}>
