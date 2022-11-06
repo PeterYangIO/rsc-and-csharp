@@ -1,21 +1,30 @@
+import Link from "next/link";
 import APIClient from "../../api-client/APIClient";
-import Post from "./Post";
+import { HttpResponse, Post } from "../../api-client/_api";
+import PostComponent from "./PostComponent";
 
 export default async function Posts() {
-    // const posts = await APIClient.getInstance().posts.postsList();
+    let posts: HttpResponse<Post[], any>;
+    try {
+        posts = await APIClient.instance.posts.postsList();
+    } catch {
+        return (
+            <div>
+                <Link href="/sign-in">Sign in</Link> to see posts
+            </div>
+        );
+    }
 
-    return (<div>hi</div>);
+    if (posts.data.length === 0) {
+        return <div>No posts</div>;
+    }
     return (
         <>
             {posts.data.map(post => {
                 return (
-                    <Post
-                        username={post.username!}
-                        description={post.description!}
-                        code={{
-                            content: post.code!,
-                            language: post.language!
-                        }}
+                    <PostComponent
+                        key={post.id}
+                        {...post}
                     />
                 );
             })}

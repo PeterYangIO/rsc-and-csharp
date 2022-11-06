@@ -7,12 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "swagger-gen": "dotnet build ../backend/backend.csproj && sta -p ../backend/bin/Debug/net6.0/swagger.json -o api-client -n _api.ts --unwrap-response-data"
+    "swagger-gen": "dotnet build ../backend/backend.csproj && sta -p ../backend/bin/Debug/net6.0/swagger.json -o api-client -n _api.ts"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
     "@primer/octicons-react": "^17.8.0",
     "@primer/react": "^35.14.0",
+    "cookies": "^0.8.0",
+    "http-proxy": "^1.18.1",
     "next": "13.0.1",
     "prismjs": "^1.29.0",
     "react": "18.2.0",
@@ -20,6 +22,8 @@
     "sanitize-html": "^2.7.3"
   },
   "devDependencies": {
+    "@types/cookies": "^0.7.7",
+    "@types/http-proxy": "^1.17.9",
     "@types/node": "^18.11.9",
     "@types/prismjs": "^1.26.0",
     "@types/react": "^18.0.24",

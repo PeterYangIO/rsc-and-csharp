@@ -1,29 +1,27 @@
 "use client";
 
-import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import APIClient from "../../api-client/APIClient";
 
-export default function Login() {
+export default function SignIn() {
     const [username, setUsername] = useState("");
-    const router = useRouter();
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        const response = await APIClient.getInstance().login.loginCreate({
+        const response = await APIClient.instance.login.loginCreate({
             username,
             password: username
         });
 
         if (response.ok) {
-            router.push("/");
+            window.location.href = "/";
         }
     };
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Sign in</h1>
             <form className="color-bg-default border p-3 mt-2" onSubmit={onSubmit}>
                 <div className="form-group">
                     <div className="form-group-header">

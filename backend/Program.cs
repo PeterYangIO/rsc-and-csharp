@@ -104,7 +104,7 @@ app.MapPost(
     return Results.Ok(new TokenDto(jwtToken));
 });
 
-app.MapGet("/posts", async (PostDb db) =>
+app.MapGet("/posts", [Authorize] async (PostDb db) =>
     await db.Posts.OrderByDescending(p => p.Id).ToListAsync());
 
 app.MapPost(

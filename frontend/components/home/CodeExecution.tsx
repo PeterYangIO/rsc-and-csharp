@@ -52,10 +52,24 @@ export async function CodeExecution(props: CodeBlockProps) {
         output = "Execution timed out";
         isItalics = true;
     }
+
+    const splitOutput = output.split("\n");
+    if (splitOutput.at(-1) === "") {
+        splitOutput.pop();
+    }
     return (
         <pre className="language-text">
             <code>
-                &gt; <span className={isItalics ? "text-italic" : ""}>{output}</span>
+                <div className={isItalics ? "text-italic" : ""}>
+                    {splitOutput.map((line, i) => {
+                        return (
+                            <span key={i}>
+                                &gt; {line}
+                                <br />
+                            </span>
+                        );
+                    })}
+                </div>
             </code>
         </pre>
     );

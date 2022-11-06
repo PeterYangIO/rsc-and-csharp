@@ -10,18 +10,25 @@
  */
 
 export interface Post {
-  description?: string;
-  language?: string;
-  code?: string;
+  /** @minLength 1 */
+  description: string;
+  /** @minLength 1 */
+  language: string;
+  /** @minLength 1 */
+  code: string;
   /** @format int32 */
-  id?: number;
-  username?: string;
+  id: number;
+  /** @minLength 1 */
+  username: string;
 }
 
 export interface PostRequest {
-  description?: string;
-  language?: string;
-  code?: string;
+  /** @minLength 1 */
+  description: string;
+  /** @minLength 1 */
+  language: string;
+  /** @minLength 1 */
+  code: string;
 }
 
 export interface TokenDto {
@@ -191,7 +198,7 @@ export class HttpClient<SecurityDataType = unknown> {
     baseUrl,
     cancelToken,
     ...params
-  }: FullRequestParams): Promise<T> => {
+  }: FullRequestParams): Promise<HttpResponse<T, E>> => {
     const secureParams =
       ((typeof secure === "boolean" ? secure : this.baseApiParams.secure) &&
         this.securityWorker &&
@@ -236,7 +243,7 @@ export class HttpClient<SecurityDataType = unknown> {
       }
 
       if (!response.ok) throw data;
-      return data.data;
+      return data;
     });
   };
 }

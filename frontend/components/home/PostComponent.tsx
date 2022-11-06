@@ -1,15 +1,7 @@
 import { cache } from "react";
+import { Post } from "../../api-client/_api";
 import CodeBlock from "./CodeBlock";
 import PostActions from "./PostActions";
-
-type PostProps = {
-    username: string;
-    description: string;
-    code: {
-        language: string;
-        content: string;
-    };
-};
 
 type User = {
     login: string;
@@ -27,8 +19,8 @@ const getUser = cache(async (username: string): Promise<User> => {
     return await response.json();
 });
 
-export default async function Post(props: PostProps) {
-    const { username, description, code } = props;
+export default async function PostComponent(props: Post) {
+    const { username, description, code, language } = props;
     const { login, avatar_url, name } = await getUser(username);
 
     return (
@@ -43,15 +35,15 @@ export default async function Post(props: PostProps) {
                         <span className="color-fg-muted">@{login ?? username}</span>
                     </div>
                     <div>{description}</div>
-                    <CodeBlock code={code.content} language={code.language} />
+                    <CodeBlock code={code} language={language} />
                 </div>
             </div>
             <PostActions
                 reactions={{
                     "👍": randomCount(10, 0.7),
-                    "👎": randomCount(10, 0.7),
+                    "👎": randomCount(3, 0.9),
                     "😄": randomCount(10, 0.7),
-                    "😕": randomCount(10, 0.7),
+                    "😕": randomCount(5, 0.8),
                     "❤️": randomCount(10, 0.7),
                     "🎉": randomCount(10, 0.7),
                     "🚀": randomCount(10, 0.7),
