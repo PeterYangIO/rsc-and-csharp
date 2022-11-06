@@ -41,9 +41,9 @@ export default async function PostComponent(props: Post) {
             <PostActions
                 reactions={{
                     "👍": randomCount(10, 0.7),
-                    "👎": randomCount(10, 0.7),
+                    "👎": randomCount(3, 0.9),
                     "😄": randomCount(10, 0.7),
-                    "😕": randomCount(10, 0.7),
+                    "😕": randomCount(5, 0.8),
                     "❤️": randomCount(10, 0.7),
                     "🎉": randomCount(10, 0.7),
                     "🚀": randomCount(10, 0.7),
