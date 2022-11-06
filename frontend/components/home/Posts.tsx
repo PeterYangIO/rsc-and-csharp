@@ -1,3 +1,4 @@
+import Link from "next/link";
 import APIClient from "../../api-client/APIClient";
 import { HttpResponse, Post } from "../../api-client/_api";
 import PostComponent from "./Post";
@@ -7,7 +8,11 @@ export default async function Posts() {
     try {
         posts = await APIClient.instance.posts.postsList();
     } catch {
-        return <div>Sign in to see posts</div>
+        return (
+            <div>
+                <Link href="/sign-in">Sign in</Link> to see posts
+            </div>
+        );
     }
 
     if (posts.data.length === 0) {
