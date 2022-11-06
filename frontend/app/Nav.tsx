@@ -1,6 +1,6 @@
 "use client";
 
-import { BellIcon, HomeIcon, HourglassIcon, MailIcon, PersonIcon, ShieldXIcon } from "@primer/octicons-react";
+import { HomeIcon, HourglassIcon, ShieldXIcon } from "@primer/octicons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -19,21 +19,6 @@ const links = [
         text: "RegEx DoS",
         icon: <ShieldXIcon />,
         href: "/regex-dos"
-    },
-    {
-        text: "Notifications",
-        icon: <BellIcon />,
-        href: "/notifications"
-    },
-    {
-        text: "Messages",
-        icon: <MailIcon />,
-        href: "/messages"
-    },
-    {
-        text: "Profile",
-        icon: <PersonIcon />,
-        href: "/profile"
     }
 ];
 

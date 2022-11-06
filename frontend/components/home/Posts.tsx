@@ -7,7 +7,7 @@ export default async function Posts() {
     try {
         posts = await APIClient.instance.posts.postsList();
     } catch {
-        return <div>Login to see posts</div>
+        return <div>Sign in to see posts</div>
     }
 
     if (posts.data.length === 0) {

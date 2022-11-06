@@ -18,7 +18,7 @@ export default function NewPost() {
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        const res = await APIClient.getInstance().posts.postsCreate({
+        const res = await APIClient.instance.posts.postsCreate({
             code,
             description,
             language
