@@ -1,3 +1,5 @@
+import { SyncIcon } from "@primer/octicons-react";
+import { Suspense } from "react";
 import NewPost from "../components/home/NewPost";
 import Posts from "../components/home/Posts";
 import { getAuthenticatedUser } from "../util";
@@ -17,7 +19,15 @@ export default function Page() {
                 </h1>
                 {user && <NewPost />}
             </div>
-            <Posts />
+            <Suspense
+                fallback={
+                    <div className="d-flex flex-justify-center">
+                        <SyncIcon className="anim-rotate" size={24} />
+                    </div>
+                }
+            >
+                <Posts />
+            </Suspense>
         </div>
     );
 }
