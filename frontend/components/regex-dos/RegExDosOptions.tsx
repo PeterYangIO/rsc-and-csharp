@@ -28,13 +28,13 @@ export default function RegExDosOptions() {
 
     const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setValue(e.target.value);
-        router.push(`/regex-dos/${value}`);
+        router.push(`/regex-dos/${e.target.value}`);
     };
 
     return (
         <div className="form-group">
             <div className="form-group-header">
-                <label htmlFor="regex-value">Example Select</label>
+                <label htmlFor="regex-value">RegEx Value</label>
             </div>
             <div className="form-group-body">
                 <select className="form-select" id="regex-value" value={value} onChange={onChange}>
