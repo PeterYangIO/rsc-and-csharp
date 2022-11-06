@@ -1,7 +1,7 @@
 import Link from "next/link";
 import APIClient from "../../api-client/APIClient";
 import { HttpResponse, Post } from "../../api-client/_api";
-import PostComponent from "./Post";
+import PostComponent from "./PostComponent";
 
 export default async function Posts() {
     let posts: HttpResponse<Post[], any>;
@@ -24,12 +24,7 @@ export default async function Posts() {
                 return (
                     <PostComponent
                         key={post.id}
-                        username={post.username!}
-                        description={post.description!}
-                        code={{
-                            content: post.code!,
-                            language: post.language!
-                        }}
+                        {...post}
                     />
                 );
             })}

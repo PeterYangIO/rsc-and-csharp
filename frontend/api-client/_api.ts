@@ -10,18 +10,25 @@
  */
 
 export interface Post {
-  description?: string;
-  language?: string;
-  code?: string;
+  /** @minLength 1 */
+  description: string;
+  /** @minLength 1 */
+  language: string;
+  /** @minLength 1 */
+  code: string;
   /** @format int32 */
-  id?: number;
-  username?: string;
+  id: number;
+  /** @minLength 1 */
+  username: string;
 }
 
 export interface PostRequest {
-  description?: string;
-  language?: string;
-  code?: string;
+  /** @minLength 1 */
+  description: string;
+  /** @minLength 1 */
+  language: string;
+  /** @minLength 1 */
+  code: string;
 }
 
 export interface TokenDto {
