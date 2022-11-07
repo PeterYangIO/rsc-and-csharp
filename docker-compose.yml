@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - 80:3000
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+  db:
+    image: postgres:14.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
