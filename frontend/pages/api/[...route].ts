@@ -3,7 +3,6 @@ import Cookies from "cookies";
 import url from "url";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const API_URL = "http://localhost:5019";
 const proxy = httpProxy.createProxyServer();
 export const config = {
     api: {
@@ -14,13 +13,13 @@ export const config = {
 /**
  * Adapted from: https://maxschmitt.me/posts/next-js-http-only-cookie-auth-tokens
  *
- * Proxy backend requests through Next.js so that requests do not need to be
+ * Proxy requests from the client through Next.js so that requests do not need to be
  * sent to a different domain / sub-domain. This helps avoid CORS issues.
  *
  * Additionally, the proxy will intercept the login / logout request so that the token
  * is never exposed to the client, and instead is stored as an http-only cookie.
  *
- * Also see: `api-client/APIClient.ts`
+ * For requests from Next server -> C# backend see: `api-client/APIClient.ts`
  */
 export default (request: NextApiRequest, response: NextApiResponse) => {
     return new Promise<void>((resolve, reject) => {
@@ -52,7 +51,8 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
                         const cookies = new Cookies(req, res);
                         cookies.set("auth-token", token, {
                             httpOnly: true,
-                            secure: process.env.NODE_ENV === "production",
+                            // Uncomment this if SSL is set up
+                            // secure: process.env.NODE_ENV === "production",
                             sameSite: "lax"
                         });
                         response.status(200).json({ loggedIn: true });
@@ -65,7 +65,8 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
         } else if (pathname === "/api/logout") {
             cookies.set("auth-token", "", {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
+                // Uncomment this if SSL is set up
+                // secure: process.env.NODE_ENV === "production",
                 sameSite: "lax"
             });
             response.status(200).json({ loggedIn: false });
@@ -74,7 +75,7 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
 
         proxy.once("error", reject);
         proxy.web(request, response, {
-            target: API_URL,
+            target: process.env.BACKEND_URL,
             autoRewrite: false,
             selfHandleResponse: isLogin
         });

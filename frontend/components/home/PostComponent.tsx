@@ -10,11 +10,16 @@ type User = {
 };
 
 const getUser = cache(async (username: string): Promise<User> => {
-    const response = await fetch(`https://api.github.com/users/${username}`, {
-        headers: {
+    const reqInit: RequestInit = {};
+
+    // Just a GH PAT with no scopes to avoid rate limiting.
+    // If the variable is not set, only 60 requests per hour are allowed.
+    if (process.env.PUBLIC_TOKEN) {
+        reqInit.headers = {
             Authorization: `token ${process.env.PUBLIC_TOKEN}`
         }
-    });
+    }
+    const response = await fetch(`https://api.github.com/users/${username}`, reqInit);
 
     return await response.json();
 });
