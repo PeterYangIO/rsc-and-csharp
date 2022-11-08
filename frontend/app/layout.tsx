@@ -19,12 +19,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </Link>
                     </div>
                     <div className="Header-item">
-                        <a href="#" className="Header-link">
+                        <a
+                            href="https://1drv.ms/p/s!Ag8VcoNV4D7YgUGUjAUOAEkvCjI6?e=vdXmp5"
+                            target="_blank"
+                            className="Header-link">
                             Slide deck
                         </a>
                     </div>
                     <div className="Header-item">
-                        <a href="https://github.com/peteryangio/rsc-and-csharp" className="Header-link">
+                        <a
+                            href="https://github.com/peteryangio/rsc-and-csharp"
+                            target="_blank"
+                            className="Header-link">
                             Repository
                         </a>
                     </div>
