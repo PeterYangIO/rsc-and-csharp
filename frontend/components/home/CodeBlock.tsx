@@ -21,7 +21,7 @@ export default function CodeBlock(props: CodeBlockProps) {
     return (
         <div className="mt-2">
             <div>
-                <span className="IssueLabel color-bg-accent-emphasis color-fg-on-emphasis text-mono">{language}</span>
+                <span className="Label text-mono">{language}</span>
             </div>
             <pre className={`language-${language}`}>
                 <code dangerouslySetInnerHTML={{ __html: html }} />
