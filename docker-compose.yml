@@ -7,14 +7,25 @@ services:
       - backend
     ports:
       - 80:3000
+    environment:
+      - API_URL=http://backend:8080
   backend:
     build: ./backend
     depends_on:
       - db
+    ports:
+      - "8080"
   db:
     image: postgres:14.3
-    restart: unless-stopped
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
+
+volumes:
+  postgres-data:

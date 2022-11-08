@@ -3,7 +3,6 @@ import Cookies from "cookies";
 import url from "url";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const API_URL = "http://localhost:5019";
 const proxy = httpProxy.createProxyServer();
 export const config = {
     api: {
@@ -65,7 +64,8 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
         } else if (pathname === "/api/logout") {
             cookies.set("auth-token", "", {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
+                // Uncomment this if SSL is set up
+                // secure: process.env.NODE_ENV === "production",
                 sameSite: "lax"
             });
             response.status(200).json({ loggedIn: false });
@@ -74,7 +74,7 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
 
         proxy.once("error", reject);
         proxy.web(request, response, {
-            target: API_URL,
+            target: process.env.API_URL,
             autoRewrite: false,
             selfHandleResponse: isLogin
         });

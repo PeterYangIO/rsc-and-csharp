@@ -24,7 +24,7 @@ export default class APIClient {
 
     public static get instance() {
         const apiConfig: ApiConfig<null> = {
-            baseUrl: "http://localhost:3000/api"
+            baseUrl: "api"
         };
 
         // We only need to handle server side requests here.
