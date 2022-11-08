@@ -5,8 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
-  <Target Name="SwaggerPostBuildTarget" AfterTargets="Build">
+  <Target Name="SwaggerPostBuildTarget" AfterTargets="Build" Condition="'$(Configuration)' != 'Release'">
     <Exec Command="dotnet tool run swagger tofile --output bin/Debug/net6.0/swagger.json bin/Debug/net6.0/backend.dll v1" />
   </Target>
 

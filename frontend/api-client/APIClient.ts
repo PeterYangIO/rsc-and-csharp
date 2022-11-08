@@ -24,7 +24,7 @@ export default class APIClient {
 
     public static get instance() {
         const apiConfig: ApiConfig<null> = {
-            baseUrl: "api"
+            baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api`
         };
 
         // We only need to handle server side requests here.

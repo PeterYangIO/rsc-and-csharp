@@ -51,7 +51,8 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
                         const cookies = new Cookies(req, res);
                         cookies.set("auth-token", token, {
                             httpOnly: true,
-                            secure: process.env.NODE_ENV === "production",
+                            // Uncomment this if SSL is set up
+                            // secure: process.env.NODE_ENV === "production",
                             sameSite: "lax"
                         });
                         response.status(200).json({ loggedIn: true });
@@ -74,7 +75,7 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
 
         proxy.once("error", reject);
         proxy.web(request, response, {
-            target: process.env.API_URL,
+            target: process.env.BACKEND_URL,
             autoRewrite: false,
             selfHandleResponse: isLogin
         });

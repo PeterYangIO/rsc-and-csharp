@@ -7,8 +7,6 @@ services:
       - backend
     ports:
       - 80:3000
-    environment:
-      - API_URL=http://backend:8080
   backend:
     build: ./backend
     depends_on:

@@ -6,7 +6,6 @@ docker image pull python:3.9-alpine
 cd backend
 dotnet restore
 dotnet tool restore
-dotnet ef database update
 
 # Install frontend packages
 cd ../frontend

@@ -63,6 +63,11 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
+// Run database migrations
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<PostDb>();
+context.Database.Migrate();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

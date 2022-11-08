@@ -9,7 +9,6 @@ RUN dotnet tool restore
 RUN dotnet restore
 
 COPY . .
-RUN dotnet ef database update
 RUN dotnet publish -c Release -o out
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
