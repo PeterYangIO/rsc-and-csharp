@@ -13,13 +13,13 @@ export const config = {
 /**
  * Adapted from: https://maxschmitt.me/posts/next-js-http-only-cookie-auth-tokens
  *
- * Proxy backend requests through Next.js so that requests do not need to be
+ * Proxy requests from the client through Next.js so that requests do not need to be
  * sent to a different domain / sub-domain. This helps avoid CORS issues.
  *
  * Additionally, the proxy will intercept the login / logout request so that the token
  * is never exposed to the client, and instead is stored as an http-only cookie.
  *
- * Also see: `api-client/APIClient.ts`
+ * For requests from Next server -> C# backend see: `api-client/APIClient.ts`
  */
 export default (request: NextApiRequest, response: NextApiResponse) => {
     return new Promise<void>((resolve, reject) => {

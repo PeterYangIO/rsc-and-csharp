@@ -23,13 +23,12 @@ export default class APIClient {
     }
 
     public static get instance() {
-        const apiConfig: ApiConfig<null> = {
-            baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api`
-        };
+        const apiConfig: ApiConfig<null> = {};
 
         // We only need to handle server side requests here.
         // For client side requests see `pages/route/api/[...route].ts`
         if (isServer()) {
+            apiConfig.baseUrl = process.env.BACKEND_URL;
             apiConfig.customFetch = (input, init) => {
                 const modifiedInit = { ...init };
                 modifiedInit.headers = {
@@ -38,6 +37,8 @@ export default class APIClient {
                 };
                 return fetch(input, modifiedInit);
             };
+        } else {
+            apiConfig.baseUrl = `${window.location.origin}/api`;
         }
 
         return new Api(apiConfig);
