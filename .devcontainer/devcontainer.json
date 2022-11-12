@@ -18,7 +18,13 @@
     "forwardPorts": [3000, 5019],
 	"remoteUser": "vscode",
 	"features": {
+        // docker in docker allows you to do docker builds and deployments from within the devcontainer
 		"ghcr.io/devcontainers/features/docker-in-docker:1": {}
 	},
+    // Codespaces configuration for minimum requirements
+    "hostRequirements": {
+        "cpus": 4,
+        "memory": "8gb"
+    },
 	"postCreateCommand": "chmod +x ./.devcontainer/postcreate.sh && ./.devcontainer/postcreate.sh"
 }
